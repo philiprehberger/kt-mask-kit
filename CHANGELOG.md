@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.2.0] - 2026-03-18
+
+- Add `MaskOptions` configuration class with configurable mask character (default `*`)
+- Add `MaskStrategy` sealed interface with `Full`, `Partial(visibleStart, visibleEnd)`, and `Regex(pattern, replacement)` implementations
+- Add `applyStrategy()` function for programmatic masking with `MaskStrategy`
+- Add `maskSsn()` function for Social Security Number masking (`***-**-NNNN` format)
+- Add `maskIban()` function for IBAN masking (preserves country code and last 4 characters)
+- Add `maskMap()` for batch masking of specific fields in a map
+- Add `maskFields()` for batch masking of specific fields in any object using reflection
+- Add `SSN` and `IBAN` variants to annotation-based masking via `MaskType`
+- Add `maskChar` parameter to `@Masked` annotation for per-field custom mask character
+- Rename `MaskStrategy` enum to `MaskType` (used in annotations)
+- All existing masking functions now accept optional `MaskOptions` parameter
+
 ## 0.1.0 (2026-03-17)
 
 - Add `mask()`, `maskEmail()`, `maskPhone()`, and `maskCreditCard()` top-level functions
