@@ -5,11 +5,11 @@ package com.philiprehberger.maskkit
  *
  * @property maskChar the character used for masking (default: `'*'`)
  */
-data class MaskOptions(
-    val maskChar: Char = '*',
+public data class MaskOptions(
+    public val maskChar: Char = '*',
 ) {
-    companion object {
+    public companion object {
         /** Default options using `*` as the mask character. */
-        val DEFAULT = MaskOptions()
+        public val DEFAULT: MaskOptions = MaskOptions()
     }
 }
