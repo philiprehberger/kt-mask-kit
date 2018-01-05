@@ -1,5 +1,9 @@
 # mask-kit
 
+[![Tests](https://github.com/philiprehberger/kt-mask-kit/actions/workflows/publish.yml/badge.svg)](https://github.com/philiprehberger/kt-mask-kit/actions/workflows/publish.yml)
+[![Maven Central](https://img.shields.io/maven-central/v/com.philiprehberger/mask-kit.svg)](https://central.sonatype.com/artifact/com.philiprehberger/mask-kit)
+[![License](https://img.shields.io/github/license/philiprehberger/kt-mask-kit)](LICENSE)
+
 Data masking for sensitive values in logs and API responses.
 
 ## Installation
@@ -128,6 +132,13 @@ println(user.maskedToString())
 | `MaskType` | Enum for annotations: `PARTIAL`, `FULL`, `EMAIL`, `CREDIT_CARD`, `PHONE`, `SSN`, `IBAN` |
 | `@Masked(strategy, keep, maskChar)` | Property annotation for automatic masking |
 | `T.maskedToString()` | Extension producing toString() with `@Masked` properties masked |
+
+## Development
+
+```bash
+./gradlew build
+./gradlew test
+```
 
 ## License
 
