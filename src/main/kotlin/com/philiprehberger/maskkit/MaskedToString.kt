@@ -24,12 +24,15 @@ fun <T : Any> T.maskedToString(): String {
 
         val displayValue = if (annotation != null && value != null) {
             val str = value.toString()
+            val opts = MaskOptions(maskChar = annotation.maskChar)
             when (annotation.strategy) {
-                MaskStrategy.PARTIAL -> mask(str, annotation.keep)
-                MaskStrategy.FULL -> "*".repeat(str.length)
-                MaskStrategy.EMAIL -> maskEmail(str)
-                MaskStrategy.CREDIT_CARD -> maskCreditCard(str)
-                MaskStrategy.PHONE -> maskPhone(str)
+                MaskType.PARTIAL -> mask(str, annotation.keep, opts)
+                MaskType.FULL -> opts.maskChar.toString().repeat(str.length)
+                MaskType.EMAIL -> maskEmail(str, opts)
+                MaskType.CREDIT_CARD -> maskCreditCard(str, opts)
+                MaskType.PHONE -> maskPhone(str, opts)
+                MaskType.SSN -> maskSsn(str, opts)
+                MaskType.IBAN -> maskIban(str, opts)
             }
         } else {
             value?.toString() ?: "null"
