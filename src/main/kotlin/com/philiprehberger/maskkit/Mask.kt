@@ -13,7 +13,7 @@ import kotlin.reflect.full.declaredMemberProperties
  * @param options masking options (default: [MaskOptions.DEFAULT])
  * @return the masked string
  */
-fun mask(value: String, keep: Int = 4, options: MaskOptions = MaskOptions.DEFAULT): String {
+public fun mask(value: String, keep: Int = 4, options: MaskOptions = MaskOptions.DEFAULT): String {
     if (value.length <= keep) return options.maskChar.toString().repeat(value.length)
     return options.maskChar.toString().repeat(value.length - keep) + value.takeLast(keep)
 }
@@ -28,7 +28,7 @@ fun mask(value: String, keep: Int = 4, options: MaskOptions = MaskOptions.DEFAUL
  * @param options masking options (default: [MaskOptions.DEFAULT])
  * @return the masked email string
  */
-fun maskEmail(email: String, options: MaskOptions = MaskOptions.DEFAULT): String {
+public fun maskEmail(email: String, options: MaskOptions = MaskOptions.DEFAULT): String {
     val atIndex = email.indexOf('@')
     if (atIndex <= 0) return mask(email, options = options)
     val local = email.substring(0, atIndex)
@@ -49,7 +49,7 @@ fun maskEmail(email: String, options: MaskOptions = MaskOptions.DEFAULT): String
  * @param options masking options (default: [MaskOptions.DEFAULT])
  * @return the masked phone string
  */
-fun maskPhone(phone: String, options: MaskOptions = MaskOptions.DEFAULT): String {
+public fun maskPhone(phone: String, options: MaskOptions = MaskOptions.DEFAULT): String {
     val digits = phone.filter { it.isDigit() }
     if (digits.length <= 4) return options.maskChar.toString().repeat(digits.length)
     return options.maskChar.toString().repeat(digits.length - 4) + digits.takeLast(4)
@@ -65,7 +65,7 @@ fun maskPhone(phone: String, options: MaskOptions = MaskOptions.DEFAULT): String
  * @param options masking options (default: [MaskOptions.DEFAULT])
  * @return the masked credit card string, e.g. `"****-****-****-1234"`
  */
-fun maskCreditCard(card: String, options: MaskOptions = MaskOptions.DEFAULT): String {
+public fun maskCreditCard(card: String, options: MaskOptions = MaskOptions.DEFAULT): String {
     val digits = card.filter { it.isDigit() }
     if (digits.length <= 4) return options.maskChar.toString().repeat(digits.length)
     val masked = options.maskChar.toString().repeat(digits.length - 4) + digits.takeLast(4)
@@ -82,7 +82,7 @@ fun maskCreditCard(card: String, options: MaskOptions = MaskOptions.DEFAULT): St
  * @param options masking options (default: [MaskOptions.DEFAULT])
  * @return the masked SSN string
  */
-fun maskSsn(ssn: String, options: MaskOptions = MaskOptions.DEFAULT): String {
+public fun maskSsn(ssn: String, options: MaskOptions = MaskOptions.DEFAULT): String {
     val digits = ssn.filter { it.isDigit() }
     val m = options.maskChar.toString()
     if (digits.length <= 4) return m.repeat(digits.length)
@@ -99,7 +99,7 @@ fun maskSsn(ssn: String, options: MaskOptions = MaskOptions.DEFAULT): String {
  * @param options masking options (default: [MaskOptions.DEFAULT])
  * @return the masked IBAN string
  */
-fun maskIban(iban: String, options: MaskOptions = MaskOptions.DEFAULT): String {
+public fun maskIban(iban: String, options: MaskOptions = MaskOptions.DEFAULT): String {
     val cleaned = iban.replace(" ", "")
     if (cleaned.length <= 6) return options.maskChar.toString().repeat(cleaned.length)
     val country = cleaned.take(2)
@@ -119,7 +119,7 @@ fun maskIban(iban: String, options: MaskOptions = MaskOptions.DEFAULT): String {
  * @param options masking options (default: [MaskOptions.DEFAULT])
  * @return a new map with the specified fields masked
  */
-fun maskMap(
+public fun maskMap(
     map: Map<String, Any?>,
     fieldMasks: Map<String, MaskStrategy>,
     options: MaskOptions = MaskOptions.DEFAULT,
@@ -145,7 +145,7 @@ fun maskMap(
  * @param options masking options (default: [MaskOptions.DEFAULT])
  * @return a map of property names to their (possibly masked) string values
  */
-fun maskFields(
+public fun maskFields(
     obj: Any,
     fieldNames: Set<String>,
     options: MaskOptions = MaskOptions.DEFAULT,

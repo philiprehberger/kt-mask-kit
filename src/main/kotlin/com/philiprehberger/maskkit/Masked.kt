@@ -10,8 +10,8 @@ package com.philiprehberger.maskkit
  */
 @Target(AnnotationTarget.PROPERTY)
 @Retention(AnnotationRetention.RUNTIME)
-annotation class Masked(
-    val strategy: MaskType = MaskType.PARTIAL,
-    val keep: Int = 4,
-    val maskChar: Char = '*',
+public annotation class Masked(
+    public val strategy: MaskType = MaskType.PARTIAL,
+    public val keep: Int = 4,
+    public val maskChar: Char = '*',
 )

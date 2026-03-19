@@ -5,7 +5,7 @@ package com.philiprehberger.maskkit
  *
  * This enum is used with the [@Masked][Masked] annotation on properties.
  */
-enum class MaskType {
+public enum class MaskType {
     /** Masks all but the last [Masked.keep] characters. */
     PARTIAL,
 
@@ -33,11 +33,11 @@ enum class MaskType {
  *
  * Use these strategies with [applyStrategy] or pass them to masking functions directly.
  */
-sealed interface MaskStrategy {
+public sealed interface MaskStrategy {
     /**
      * Replaces the entire value with the mask character.
      */
-    data object Full : MaskStrategy
+    public data object Full : MaskStrategy
 
     /**
      * Keeps [visibleStart] characters at the beginning and [visibleEnd] characters at the end visible,
@@ -46,7 +46,7 @@ sealed interface MaskStrategy {
      * @property visibleStart number of leading characters to keep visible
      * @property visibleEnd number of trailing characters to keep visible
      */
-    data class Partial(val visibleStart: Int = 0, val visibleEnd: Int = 4) : MaskStrategy
+    public data class Partial(public val visibleStart: Int = 0, public val visibleEnd: Int = 4) : MaskStrategy
 
     /**
      * Replaces matches of a regular expression [pattern] with the given [replacement].
@@ -54,8 +54,8 @@ sealed interface MaskStrategy {
      * @property pattern the regex pattern to match
      * @property replacement the replacement string (may use group references like `$1`)
      */
-    data class Regex(val pattern: kotlin.text.Regex, val replacement: String) : MaskStrategy {
-        constructor(pattern: String, replacement: String) : this(kotlin.text.Regex(pattern), replacement)
+    public data class Regex(public val pattern: kotlin.text.Regex, public val replacement: String) : MaskStrategy {
+        public constructor(pattern: String, replacement: String) : this(kotlin.text.Regex(pattern), replacement)
     }
 }
 
@@ -67,7 +67,7 @@ sealed interface MaskStrategy {
  * @param options masking options (default: [MaskOptions.DEFAULT])
  * @return the masked string
  */
-fun applyStrategy(value: String, strategy: MaskStrategy, options: MaskOptions = MaskOptions.DEFAULT): String {
+public fun applyStrategy(value: String, strategy: MaskStrategy, options: MaskOptions = MaskOptions.DEFAULT): String {
     return when (strategy) {
         is MaskStrategy.Full -> options.maskChar.toString().repeat(value.length)
         is MaskStrategy.Partial -> {

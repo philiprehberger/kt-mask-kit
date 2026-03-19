@@ -13,7 +13,7 @@ import kotlin.reflect.full.findAnnotation
  *
  * @return a string representation with sensitive properties masked
  */
-fun <T : Any> T.maskedToString(): String {
+public fun <T : Any> T.maskedToString(): String {
     val klass = this::class
     val props = klass.declaredMemberProperties
     val entries = props.map { prop ->
