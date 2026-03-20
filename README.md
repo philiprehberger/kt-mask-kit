@@ -11,7 +11,7 @@ Data masking for sensitive values in logs and API responses.
 ### Gradle Kotlin DSL
 
 ```kotlin
-implementation("com.philiprehberger:mask-kit:0.2.0")
+implementation("com.philiprehberger:mask-kit:0.2.3")
 ```
 
 ### Maven
@@ -20,7 +20,7 @@ implementation("com.philiprehberger:mask-kit:0.2.0")
 <dependency>
     <groupId>com.philiprehberger</groupId>
     <artifactId>mask-kit</artifactId>
-    <version>0.2.0</version>
+    <version>0.2.3</version>
 </dependency>
 ```
 
